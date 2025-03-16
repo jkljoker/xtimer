@@ -1,1 +1,59 @@
-spring.application.name=xtimer
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/joker-svr?serverTimezone=GMT%2B8&characterEncoding=utf8&&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  #    druid:
+  #      min-idle: 1                                          # ?????
+  #      max-active: 100                                         # ?????(??8)
+  #      max-wait: 1000                                       # ????????????
+  #      min-evictable-idle-time-millis: 300000               # ????????????????????
+  #      time-between-eviction-runs-millis: 60000             # ????????????????????????
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  #??????
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+scheduler:
+  bucketsNum: 5
+  tryLockSeconds: 70
+  tryLockGapMilliSeconds: 100
+  successExpireSeconds: 130
+  pool:
+    corePoolSize: 100
+    maxPoolSize: 100
+    queueCapacity: 99999
+    namePrefix: scheduler-
+
+
+trigger:
+  zrangeGapSeconds: 1
+  workersNum: 10000
+  pool:
+    corePoolSize: 100
+    maxPoolSize: 100
+    queueCapacity: 99999
+    namePrefix: trigger-
+
+migrator:
+  workersNum: 1000
+  migrateStepMinutes: 60
+  migrateTryLockMinutes: 1
+  migrateSuccessExpireMinutes: 1
+  timerDetailCacheMinutes: 2
