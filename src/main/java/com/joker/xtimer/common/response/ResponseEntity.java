@@ -1,4 +1,6 @@
-package com.joker.xtimer.model;
+package com.joker.xtimer.common.response;
+
+import com.joker.xtimer.enums.ResponseEnum;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

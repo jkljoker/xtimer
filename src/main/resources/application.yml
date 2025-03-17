@@ -3,6 +3,11 @@ server:
   port: 8082
 
 spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  logging:
+    level:
+      root: DEBUG
   data:
     redis:
       host: localhost
@@ -28,22 +33,22 @@ spring:
         password: nacos
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/joker-svr?serverTimezone=GMT%2B8&characterEncoding=utf8&&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/joker?serverTimezone=GMT%2B8&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
-  #    druid:
-  #      min-idle: 1                                          # ?????
-  #      max-active: 100                                         # ?????(??8)
-  #      max-wait: 1000                                       # ????????????
-  #      min-evictable-idle-time-millis: 300000               # ????????????????????
-  #      time-between-eviction-runs-millis: 60000             # ????????????????????????
+    druid:
+        min-idle: 1
+        max-active: 100
+        max-wait: 1000
+        min-evictable-idle-time-millis: 300000
+        time-between-eviction-runs-millis: 60000
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  #??????
+  type-aliases-package: com.joker.xtimer.model
   configuration:
-    map-underscore-to-camel-case: false
+    map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 scheduler:
   bucketsNum: 5

@@ -1,4 +1,4 @@
-package com.joker.xtimer.model;
+package com.joker.xtimer.enums;
 
 public enum ResponseEnum {
     OK(0, "ok"),
