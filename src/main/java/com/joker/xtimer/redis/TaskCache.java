@@ -55,7 +55,7 @@ public class TaskCache {
                                 TimerUtils.UnionTimerIDUnix(task.getTimerId(), unix),
                                 unix);
                     }
-                    return redisOperations.exec(); //2023-11-06 21:54_1
+                    return redisOperations.exec();
                 }
             };
             redisTemplate.execute(sessionCallback);
